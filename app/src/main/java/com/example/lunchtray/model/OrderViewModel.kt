@@ -15,6 +15,7 @@
  */
 package com.example.lunchtray.model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -78,8 +79,9 @@ class OrderViewModel : ViewModel() {
         // TODO: set the current entree value to the menu item corresponding to the passed in string
         // TODO: update the subtotal to reflect the price of the selected entree.
         _entree.value?.let { previousEntreePrice = it.price }
-        _subtotal.value?.minus(previousEntreePrice)
+        _subtotal.value = (_subtotal.value)?.minus(previousEntreePrice)
         _entree.value = menuItems[entree]
+        Log.i("OrderViewModel", "entree name: ${this.entree.value?.name}")
         // it's guaranteed _entree is not null
         updateSubtotal(_entree.value!!.price)
     }
@@ -96,7 +98,7 @@ class OrderViewModel : ViewModel() {
         // TODO: set the current side value to the menu item corresponding to the passed in string
         // TODO: update the subtotal to reflect the price of the selected side.
         _side.value?.let { previousSidePrice = it.price }
-        _subtotal.value?.minus(previousSidePrice)
+        _subtotal.value = (_subtotal.value)?.minus(previousSidePrice)
         _side.value = menuItems[side]
         updateSubtotal(_side.value!!.price)
     }
@@ -116,7 +118,7 @@ class OrderViewModel : ViewModel() {
         //  string
         // TODO: update the subtotal to reflect the price of the selected accompaniment.
         _accompaniment.value?.let { previousAccompanimentPrice = it.price }
-        _subtotal.value?.minus(previousAccompanimentPrice)
+        _subtotal.value = (_subtotal.value)?.minus(previousAccompanimentPrice)
         _accompaniment.value = menuItems[accompaniment]
         updateSubtotal(_accompaniment.value!!.price)
     }
@@ -130,9 +132,7 @@ class OrderViewModel : ViewModel() {
         //  Otherwise, set _subtotal.value to equal the price of the item.
 
         // TODO: calculate the tax and resulting total
-        var total = itemPrice
-        _subtotal.value?.let { currentSubtotal -> total += currentSubtotal }
-        _subtotal.value = total
+        _subtotal.value = (_subtotal.value)?.plus(itemPrice)
         calculateTaxAndTotal()
     }
 
@@ -143,7 +143,7 @@ class OrderViewModel : ViewModel() {
         // TODO: set _tax.value based on the subtotal and the tax rate.
         // TODO: set the total based on the subtotal and _tax.value.
         _tax.value = taxRate * _subtotal.value!!
-        _total.value = _subtotal.value!!+ _tax.value!!
+        _total.value = _subtotal.value!! + _tax.value!!
     }
 
     /**
@@ -158,8 +158,8 @@ class OrderViewModel : ViewModel() {
         _entree.value = null
         _side.value = null
         _accompaniment.value = null
-        _subtotal.value = null
-        _total.value = null
-        _tax.value = null
+        _subtotal.value = 0.0
+        _total.value = 0.0
+        _tax.value = 0.0
     }
 }

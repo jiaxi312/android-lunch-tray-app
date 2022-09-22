@@ -58,7 +58,8 @@
                     android:checked='@{viewModel.side.equals(viewModel.menuItems["salad"])}'
                     android:text='@{viewModel.menuItems["salad"].name}'
                     android:textAppearance="?attr/textAppearanceBody1"
-                    tools:text="Side 1" />
+                    tools:text="Side 1"
+                    android:onClick='@{() -> viewModel.setSide("salad")}'/>
 
                 <TextView
                     android:id="@+id/salad_description"
@@ -89,7 +90,8 @@
                     android:checked='@{viewModel.side.equals(viewModel.menuItems["soup"])}'
                     android:text='@{viewModel.menuItems["soup"].name}'
                     android:textAppearance="?attr/textAppearanceBody1"
-                    tools:text="Side 2" />
+                    tools:text="Side 2"
+                    android:onClick='@{() -> viewModel.setSide("soup")}'/>
 
                 <TextView
                     android:id="@+id/soup_description"
@@ -121,7 +123,8 @@
                     android:checked='@{viewModel.side.equals(viewModel.menuItems["potatoes"])}'
                     android:text='@{viewModel.menuItems["potatoes"].name}'
                     android:textAppearance="?attr/textAppearanceBody1"
-                    tools:text="Side 3" />
+                    tools:text="Side 3"
+                    android:onClick='@{() -> viewModel.setSide("potatoes")}'/>
 
                 <TextView
                     android:id="@+id/potato_description"
@@ -152,7 +155,8 @@
                     android:checked='@{viewModel.side.equals(viewModel.menuItems["rice"])}'
                     android:text='@{viewModel.menuItems["rice"].name}'
                     android:textAppearance="?attr/textAppearanceBody1"
-                    tools:text="Side 4" />
+                    tools:text="Side 4"
+                    android:onClick='@{() -> viewModel.setSide("rice")}'/>
 
                 <TextView
                     android:id="@+id/rice_description"
