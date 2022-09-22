@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModel
 import com.example.lunchtray.data.DataSource
 import java.text.NumberFormat
 
+// some changes
 class OrderViewModel : ViewModel() {
 
     // Map of menu items
