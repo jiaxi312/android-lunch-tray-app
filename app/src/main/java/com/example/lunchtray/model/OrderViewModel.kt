@@ -81,6 +81,7 @@ class OrderViewModel : ViewModel() {
         _entree.value?.let { previousEntreePrice = it.price }
         _subtotal.value = (_subtotal.value)?.minus(previousEntreePrice)
         _entree.value = menuItems[entree]
+        Log.i("OrderViewModel", "entree name: ${this.entree.value?.name}")
         // it's guaranteed _entree is not null
         updateSubtotal(_entree.value!!.price)
     }
@@ -131,9 +132,7 @@ class OrderViewModel : ViewModel() {
         //  Otherwise, set _subtotal.value to equal the price of the item.
 
         // TODO: calculate the tax and resulting total
-        Log.i("OrderViewModel", "item price: $itemPrice")
         _subtotal.value = (_subtotal.value)?.plus(itemPrice)
-        Log.i("OrderViewModel", "After update subtotal: ${_subtotal.value}")
         calculateTaxAndTotal()
     }
 
@@ -144,7 +143,7 @@ class OrderViewModel : ViewModel() {
         // TODO: set _tax.value based on the subtotal and the tax rate.
         // TODO: set the total based on the subtotal and _tax.value.
         _tax.value = taxRate * _subtotal.value!!
-        _total.value = _subtotal.value!!+ _tax.value!!
+        _total.value = _subtotal.value!! + _tax.value!!
     }
 
     /**
